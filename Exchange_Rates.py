@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Python Task for McMakler
+# Plotting exchange rates
 # Author: Nahid Akhtar
 # Email: nahid.saarland@gmail.com
 ########################################################################################################################
@@ -148,29 +148,29 @@ def main():
     base = "EUR"
     symbols = "USD,GBP,JPY"
     base_url = "http://data.fixer.io/api/"
-    personal_access_key = '3052f716ee6527c45bf6c50999dddfbf'
+    personal_access_key = 'XXXXXXXXXXXXXXXXXX' # ENTER YOUR ACCESS KEY HERE
     time_duration = 180
     ####################################################################################################################
-    # Question 1 & 2: Download data for last 180 days using the API call
+    # Download data for last 180 days using the API call
     print('Kindly wait for few minutes as is downloading data records for last 180 days using API.')
     data = download_exchange_data(base, symbols, base_url, personal_access_key, time_duration)
     #print(data)
     ####################################################################################################################
-    # Question 4:  Pickle the Dataframe
+    #  Pickle the Dataframe
 
     pickle_file = './data.pkl'
     data.to_pickle(pickle_file)
     ####################################################################################################################
-    # Question 5:  Create the database by unpickle the file
+    # Create the database by unpickle the file
 
     cursor, db = create_database(pickle_file)
     ####################################################################################################################
-    ''' Question 6: Run SQL over this DB and print the result to stdout:
+    ''' Run SQL over this DB and print the result to stdout:
     # select maximum rate/value for every symbol/currency (USD, GBP, JPY) '''
 
     run_query(cursor, db)
     ####################################################################################################################
-    '''  Question 3: Draw graphs from data (As values of GBP and USD are very close and have overlap so I created two 
+    '''  Draw graphs from data (As values of GBP and USD are very close and have overlap so I created two 
       graphs i.e. one with all three values together and the other with separate graphs'''
 
     separate_graphs(data)
